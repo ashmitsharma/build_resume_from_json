@@ -1,0 +1,91 @@
+{
+  "basicDetails": {
+    "name": "John Doe",
+    "position": "Software Engineer",
+    "email": "john.doe@example.com",
+    "linkedin": "linkedin.com/in/johndoe",
+    "location": "New York, NY",
+    "phone": "(123) 456-7890"
+  },
+  "summary": "Experienced software engineer with over 5 years of experience in web development and cloud technologies. Passionate about creating efficient and scalable solutions for complex problems.",
+  "skills": [
+    "JavaScript", 
+    "TypeScript", 
+    "React", 
+    "Node.js", 
+    "Python", 
+    "AWS", 
+    "Docker", 
+    "Kubernetes", 
+    "MongoDB", 
+    "PostgreSQL"
+  ],
+  "experience": [
+    {
+      "company": "Tech Solutions Inc.",
+      "position": "Senior Software Engineer",
+      "location": "New York, NY",
+      "startDate": "Jan 2021",
+      "endDate": "Present",
+      "description": "Led development of a microservices architecture platform.\nImplemented CI/CD pipelines using GitHub Actions and AWS.\nMentored junior developers and conducted code reviews."
+    },
+    {
+      "company": "Digital Innovations",
+      "position": "Software Developer",
+      "location": "Boston, MA",
+      "startDate": "Mar 2018",
+      "endDate": "Dec 2020",
+      "description": "Developed and maintained RESTful APIs using Node.js and Express.\nCollaborated with UX designers to implement responsive front-end interfaces.\nImproved application performance by optimizing database queries."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Personal Finance Dashboard",
+      "description": "Built a comprehensive dashboard for tracking personal finances using React and Firebase.\nImplemented data visualization using D3.js.\nIncorporated machine learning algorithms for expense prediction."
+    },
+    {
+      "title": "Open Source Contribution - Package Manager",
+      "description": "Contributed to a popular package manager by improving dependency resolution.\nAdded support for custom registries.\nWrote extensive documentation and test cases."
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Technology",
+      "degree": "Master of Science in Computer Science",
+      "location": "New York, NY",
+      "startDate": "Sep 2016",
+      "endDate": "May 2018"
+    },
+    {
+      "institution": "State University",
+      "degree": "Bachelor of Science in Software Engineering",
+      "location": "Chicago, IL",
+      "startDate": "Sep 2012",
+      "endDate": "May 2016"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "AWS Certified Solutions Architect",
+      "description": "Certified in designing and implementing distributed systems on AWS"
+    },
+    {
+      "title": "Google Cloud Professional Developer",
+      "description": "Expertise in developing, deploying, and monitoring applications on Google Cloud Platform"
+    }
+  ],
+  "keyAchievements": [
+    {
+      "title": "Innovation Award",
+      "description": "Received company-wide innovation award for developing an automated testing framework"
+    },
+    {
+      "title": "Patent",
+      "description": "Co-authored a patent for a novel approach to real-time data processing"
+    },
+    {
+      "title": "Publication",
+      "description": "Published research paper on efficient algorithms for distributed systems"
+    }
+  ]
+}
