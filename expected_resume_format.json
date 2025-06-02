@@ -1,91 +1,116 @@
 {
-  "basicDetails": {
-    "name": "John Doe",
-    "position": "Software Engineer",
-    "email": "john.doe@example.com",
-    "linkedin": "linkedin.com/in/johndoe",
-    "location": "New York, NY",
-    "phone": "(123) 456-7890"
+  "basic_details": {
+    "name": "John Deo",
+    "email": "john@example.com",
+    "phone": "9999999999",
+    "linkedin": "linkedin/johndeo"
   },
-  "summary": "Experienced software engineer with over 5 years of experience in web development and cloud technologies. Passionate about creating efficient and scalable solutions for complex problems.",
-  "skills": [
-    "JavaScript", 
-    "TypeScript", 
-    "React", 
-    "Node.js", 
-    "Python", 
-    "AWS", 
-    "Docker", 
-    "Kubernetes", 
-    "MongoDB", 
-    "PostgreSQL"
-  ],
-  "experience": [
+  "resume_data": {
+  "work_experiences": [
     {
-      "company": "Tech Solutions Inc.",
-      "position": "Senior Software Engineer",
-      "location": "New York, NY",
-      "startDate": "Jan 2021",
-      "endDate": "Present",
-      "description": "Led development of a microservices architecture platform.\nImplemented CI/CD pipelines using GitHub Actions and AWS.\nMentored junior developers and conducted code reviews."
+      "job_title": "Data Engineer",
+      "company": "NYU Health",
+      "duration": "Jan 2025 – Present",
+      "description": [
+        "Designed and implemented scalable, cloud-based data pipelines for processing and analyzing healthcare datasets in real-time, utilizing AWS services (Glue, Redshift, S3).",
+        "Developed ETL processes for integrating structured and unstructured healthcare data from multiple sources, ensuring seamless data flow while maintaining compliance with HIPAA regulations.",
+        "Optimized data processing workflows, reducing pipeline runtimes by 35% and improving data retrieval time for clinical applications.",
+        "Collaborated with cross-functional teams, including clinicians and healthcare analysts, to create data models supporting predictive analytics for patient care and operational efficiency.",
+        "Established and maintained cloud-based data governance practices to ensure data security, quality, and compliance with healthcare standards."
+      ]
     },
     {
-      "company": "Digital Innovations",
-      "position": "Software Developer",
-      "location": "Boston, MA",
-      "startDate": "Mar 2018",
-      "endDate": "Dec 2020",
-      "description": "Developed and maintained RESTful APIs using Node.js and Express.\nCollaborated with UX designers to implement responsive front-end interfaces.\nImproved application performance by optimizing database queries."
+      "job_title": "Data Engineer Intern",
+      "company": "S&S Health",
+      "duration": "May 2024 – Aug 2024",
+      "description": [
+        "Assisted in the design and development of ETL pipelines using Databricks and Spark for processing large healthcare datasets.",
+        "Integrated healthcare data from various sources, including patient records and clinical data, while adhering to industry standards for privacy and security.",
+        "Conducted data cleansing and transformation activities to ensure the accuracy and integrity of data for reporting and analysis.",
+        "Supported the development of data models and visualizations to aid in decision-making across healthcare teams.",
+        "Gained exposure to cloud technologies and healthcare data regulations, ensuring compliance with HIPAA and other healthcare standards."
+      ]
+    },
+    {
+      "job_title": "Senior Data Engineer",
+      "company": "Dentsu",
+      "duration": "May 2019 – Jul 2022",
+      "description": [
+        "Led the architecture and design of large-scale data pipelines, processing terabytes of healthcare and marketing data, ensuring fast, reliable, and secure data processing.",
+        "Spearheaded initiatives to integrate cloud technologies such as AWS and Snowflake for data storage and analytics, reducing processing times by 40%.",
+        "Designed and implemented data models and optimized database schemas for reporting and business intelligence, driving insights into customer behavior and healthcare trends.",
+        "Established data governance frameworks, ensuring HIPAA compliance and enhancing the overall data quality and accessibility across teams.",
+        "Led a team of data engineers, providing mentorship and ensuring the timely delivery of data engineering solutions in a fast-paced, collaborative environment."
+      ]
+    },
+    {
+      "job_title": "Data Engineer",
+      "company": "Dentsu",
+      "duration": "May 2018 – May 2019",
+      "description": [
+        "Engineered data pipelines using Spark and Scala to process large-scale marketing and healthcare datasets, ensuring high performance and scalability.",
+        "Implemented ETL processes for seamless data integration from various marketing and healthcare platforms into a centralized data warehouse.",
+        "Collaborated with data scientists and analysts to enable advanced analytics and machine learning models for customer and healthcare insights.",
+        "Managed cloud infrastructure on AWS for data storage, processing, and analytics, enhancing system efficiency and scalability."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        "Python",
+        "SQL",
+        "Scala",
+        "JavaScript",
+        "JSON"
+      ]
+    },
+    {
+      "category": "Technologies & Tools",
+      "items": [
+        "Databricks",
+        "Spark",
+        "Jupyter Notebooks",
+        "AWS (Glue, Redshift, S3)",
+        "Snowflake",
+        "Apache Kafka",
+        "Azure"
+      ]
+    },
+    {
+      "category": "Other Proficiencies",
+      "items": [
+        "ETL/ELT process design",
+        "Data pipeline development",
+        "Big data processing",
+        "Data integration",
+        "Cloud architecture (AWS, Azure)",
+        "Healthcare data management",
+        "Data governance",
+        "HIPAA compliance"
+      ]
     }
   ],
   "projects": [
     {
-      "title": "Personal Finance Dashboard",
-      "description": "Built a comprehensive dashboard for tracking personal finances using React and Firebase.\nImplemented data visualization using D3.js.\nIncorporated machine learning algorithms for expense prediction."
+      "name": "Cloud-Based Healthcare Data Pipeline",
+      "technologies": [
+        "AWS"
+      ],
+      "description": [
+        "Developed a cloud-based ETL pipeline on AWS to process and integrate clinical data from Electronic Health Records (EHR) systems for predictive analytics and patient care improvement."
+      ]
     },
     {
-      "title": "Open Source Contribution - Package Manager",
-      "description": "Contributed to a popular package manager by improving dependency resolution.\nAdded support for custom registries.\nWrote extensive documentation and test cases."
+      "name": "Real-Time Health Data Monitoring System",
+      "technologies": [],
+      "description": [
+        "Engineered a real-time data processing pipeline for streaming health data from wearables, ensuring seamless integration and analytics for patient health monitoring."
+      ]
     }
   ],
-  "education": [
-    {
-      "institution": "University of Technology",
-      "degree": "Master of Science in Computer Science",
-      "location": "New York, NY",
-      "startDate": "Sep 2016",
-      "endDate": "May 2018"
-    },
-    {
-      "institution": "State University",
-      "degree": "Bachelor of Science in Software Engineering",
-      "location": "Chicago, IL",
-      "startDate": "Sep 2012",
-      "endDate": "May 2016"
-    }
-  ],
-  "certifications": [
-    {
-      "title": "AWS Certified Solutions Architect",
-      "description": "Certified in designing and implementing distributed systems on AWS"
-    },
-    {
-      "title": "Google Cloud Professional Developer",
-      "description": "Expertise in developing, deploying, and monitoring applications on Google Cloud Platform"
-    }
-  ],
-  "keyAchievements": [
-    {
-      "title": "Innovation Award",
-      "description": "Received company-wide innovation award for developing an automated testing framework"
-    },
-    {
-      "title": "Patent",
-      "description": "Co-authored a patent for a novel approach to real-time data processing"
-    },
-    {
-      "title": "Publication",
-      "description": "Published research paper on efficient algorithms for distributed systems"
-    }
-  ]
+  "Professional_Summary": "Detail-oriented Data Engineer with a strong background in healthcare data management, cloud technologies, and big data engineering. Expertise in building scalable data pipelines, implementing ETL/ELT processes, and integrating cloud platforms such as AWS and Snowflake. Experienced in analyzing large datasets to extract actionable insights and improve decision-making processes within the healthcare sector. Proven track record of collaborating with cross-functional teams to deliver high-quality, compliant, and efficient data solutions. Skilled in troubleshooting complex data issues and maintaining data governance standards.",
+  "Year_of_experience": 7
+  }
 }
