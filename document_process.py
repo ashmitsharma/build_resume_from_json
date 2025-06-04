@@ -61,15 +61,15 @@ def format_resume_data(data: Dict[str, Any]) -> Dict[str, Any]:
             }
             formatted_data["projects"].append(formatted_project)
     
-    # # Add education if present (not in the sample data)
-    # if "education" in data:
-    #     formatted_data["education"] = data["education"]
-    # else:
-    #     formatted_data["education"] = []
+    # Add education if present 
+    if "education" in data:
+        formatted_data["education"] = data["education"]
+    else:
+        formatted_data["education"] = []
     
-    # # Add certifications if present (not in the sample data)
-    # if "certifications" in data:
-    #     formatted_data["certifications"] = data["certifications"]
+    # Add certifications if present
+    if "certifications" in data:
+        formatted_data["certifications"] = data["certifications"]
     
     # # Add key achievements if present (not in the sample data)
     # if "key_achievements" in data:
