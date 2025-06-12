@@ -67,6 +67,7 @@
             font-weight: 600;
             margin: 0;
             line-height: 1.2;
+            border-bottom: 1px solid #000;
         }
 
         .title {
@@ -196,9 +197,9 @@
             <!-- <div class="title">{{ resume.basicDetails.position }}</div> -->
             <div class="contact-info">
                 {% if resume.basicDetails.phone %}<span>{{ resume.basicDetails.phone }}</span> {% endif %} 
-                {% if resume.basicDetails.email %}<span>{{ resume.basicDetails.email }}</span> {% endif %}
-                {% if resume.basicDetails.linkedin %}<span>{{ resume.basicDetails.linkedin }}</span> {% endif %}
-                {% if resume.basicDetails.location %}<span>{{ resume.basicDetails.location }}</span>{% endif %}
+                {% if resume.basicDetails.email %}<span>• {{ resume.basicDetails.email }}</span> {% endif %}
+                {% if resume.basicDetails.linkedin %}<span>• {{ resume.basicDetails.linkedin }}</span> {% endif %}
+                {% if resume.basicDetails.location %}<span>• {{ resume.basicDetails.location }}</span>{% endif %}
             </div>
         </div>
 
