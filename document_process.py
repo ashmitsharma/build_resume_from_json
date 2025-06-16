@@ -109,6 +109,40 @@ def cleanup_old_pdfs(pdf_dir: str, ttl_minutes: int = 30):
         print(f"Error during cleanup: {str(e)}")
 
 
+def count_value_characters(data):
+    total_chars = 0
+
+    if isinstance(data, str):
+        total_chars += len(data)
+    elif isinstance(data, list):
+        for item in data:
+            total_chars += count_value_characters(item)
+    elif isinstance(data, dict):
+        for value in data.values():
+            total_chars += count_value_characters(value)
+
+    return total_chars
+
+
+def get_page_size(characters):
+    if characters >= 5000 and characters <=6000:
+        # print("characters >= 5000 and characters <=6000")
+        return 380
+    elif characters >= 4700 and characters <=5000:
+        # print("characters >= 4700 and characters <=5000")
+        return 350
+    elif characters >= 4500 and characters <=4700:
+        # print("characters >= 4500 and characters <=4700")
+        return 300
+    elif characters >= 4200 and characters <=4500:
+        # print("characters >= 4200 and characters <=4500")
+        return 280
+    elif characters >= 4000 and characters <=4200:
+        # print("characters >= 4000 and characters <=4200")
+        return 260
+    return 250
+
+
 async def generate_resume_from_json(basic_details, resume_data): 
     templates = Jinja2Templates(directory="templates")
     
@@ -136,9 +170,12 @@ async def generate_resume_from_json(basic_details, resume_data):
     # Create a complete resume object with basicDetails
     complete_resume = formatted_data
     complete_resume["basicDetails"] = basic_details
+
+    # Get the Total characters count of resume data and pass it to get_page_size function
+    complete_resume["pageSize"] = get_page_size(count_value_characters(resume_data))
     
     # Render template with the provided data
-    html_content = templates.get_template("resume/resume.html").render(
+    html_content = templates.get_template("resume/resume_dynamic.html").render(
         resume=complete_resume
     )
     
