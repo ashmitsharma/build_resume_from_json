@@ -187,11 +187,26 @@
         .skills-items {
             margin: 0;
         }
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-family: sans-serif;
+            opacity: 0.5;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+
+        {% if resume.watermark %}
+        <!--Add Watermark only when watermark is True -->
+        <div class="watermark">Tap My Resume</div>
+        {% endif %}
+
         <!-- Header Section -->
         <div class="header">
             <h1 class="name">{{ resume.basicDetails.name|upper }}</h1>

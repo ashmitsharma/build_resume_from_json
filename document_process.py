@@ -174,6 +174,9 @@ async def generate_resume_from_json(basic_details, resume_data):
     # Get the Total characters count of resume data and pass it to get_page_size function
     complete_resume["pageSize"] = get_page_size(count_value_characters(resume_data))
     
+    # Add watermark to the resume if it is True need to decide if user is paid or free 
+    complete_resume["watermark"] = True
+
     # Render template with the provided data
     html_content = templates.get_template("resume/resume_dynamic.html").render(
         resume=complete_resume
