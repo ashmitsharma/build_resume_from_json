@@ -8,7 +8,13 @@
     <style>
         /* WeasyPrint specific page settings */
         @page {
-            size: 210mm {{ resume.pageSize }}mm;
+            size: 210mm {
+                    {
+                    resume.pageSize
+                }
+            }
+
+            mm;
             margin: 5px 10px -1px;
             padding: 0;
             /* Prevent page breaks inside the document */
@@ -57,6 +63,10 @@
             /* page-break-inside: avoid; */
         }
 
+        .main-content {
+            z-index: 10;
+        }
+
         /* Header section */
         .header {
             text-align: center;
@@ -103,6 +113,7 @@
         .summary {
             margin: 2px 0;
         }
+
         /* Experience and education entries */
         .entry {
             margin-bottom: 5px;
@@ -113,13 +124,13 @@
             display: table;
             width: 100%;
         }
-        
+
         .entry-header-left {
             display: table-cell;
             width: 70%;
             text-align: left;
         }
-        
+
         .entry-header-right {
             display: table-cell;
             width: 30%;
@@ -155,7 +166,8 @@
         }
 
         ul.bullets li {
-            margin-bottom: 1px; /* Reduce spacing between bullet points */
+            margin-bottom: 1px;
+            /* Reduce spacing between bullet points */
         }
 
         /* Flexbox for achievements section */
@@ -187,14 +199,18 @@
         .skills-items {
             margin: 0;
         }
+
         .watermark {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) rotate(-45deg);
             font-size: 24px;
+            font-weight: 600;
             font-family: sans-serif;
             opacity: 0.5;
+            z-index: 1;
+            color: #e66868;
         }
     </style>
 </head>
@@ -204,147 +220,154 @@
 
         {% if resume.watermark %}
         <!--Add Watermark only when watermark is True -->
-        <div class="watermark">Tap My Resume</div>
-        {% endif %}
-
-        <!-- Header Section -->
-        <div class="header">
-            <h1 class="name">{{ resume.basicDetails.name|upper }}</h1>
-            <!-- <div class="title">{{ resume.basicDetails.position }}</div> -->
-            <div class="contact-info">
-                {% if resume.basicDetails.phone %}<span>{{ resume.basicDetails.phone }}</span> {% endif %} 
-                {% if resume.basicDetails.email %}<span>• {{ resume.basicDetails.email }}</span> {% endif %}
-                {% if resume.basicDetails.linkedin %}<span>• {{ resume.basicDetails.linkedin }}</span> {% endif %}
-                {% if resume.basicDetails.location %}<span>• {{ resume.basicDetails.location }}</span>{% endif %}
-            </div>
-        </div>
-
-        <!-- Summary Section -->
-        <div class="section">
-            <h2 class="section-title">Summary</h2>
-            <p class="description summary">
-                {{ resume.summary }}
-            </p>
-        </div>
-
-        <!-- Skills Section -->
-        <div class="section">
-            <h2 class="section-title">Skills</h2>
-            {% for category in resume.skills %}
-            <div class="skills-items"><span class="skills-category">{{ category.category }}:</span> {{ category.skill_items|join(", ") }}</div>
-            {% endfor %}
-        </div>
-
-        <!-- Experience Section -->
-        <div class="section">
-            <h2 class="section-title">Experience</h2>
-
-            {% for job in resume.experience %}
-            <div class="entry">
-                <div class="entry-header">
-                    <div class="entry-header-left">
-                        <div class="organization">{{ job.company }}</div>
-                    </div>
-                    <div class="entry-header-right">
-                        <div class="location">{{ job.location }}</div>
-                    </div>
-                </div>
-                <div class="entry-header">
-                    <div class="entry-header-left">
-                        <div class="position">{{ job.position }}</div>
-                    </div>
-                    <div class="entry-header-right">
-                        <div class="date">{{ job.startDate }} - {{ job.endDate }}</div>
-                    </div>
-                </div>
-                <ul class="bullets">
-                    {% for line in job.description.split('\n') %}
-                    {% if line.strip() %}
-                    <li>{{ line }}</li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endfor %}
-        </div>
-
-        {% if resume.projects is defined and resume.projects %}
-        <!-- Projects Section -->
-        <div class="section">
-            <h2 class="section-title">Projects</h2>
-
-            {% for project in resume.projects %}
-            <div class="entry">
-                <div class="position">{{ project.title }}</div>
-                <ul class="bullets">
-                    {% for line in project.description.split('\n') %}
-                    {% if line.strip() %}
-                    <li>{{ line }}</li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endfor %}
+        <div class="watermark">
+            <img src="data:image/webp;base64,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"
+                alt="Logo" style="height: 45px; vertical-align: middle;" />
+            Tap My Resume
         </div>
         {% endif %}
 
-        <!-- Education Section -->
-        {% if resume.education %}
-        <div class="section">
-            <h2 class="section-title">Education</h2>
-
-            {% for edu in resume.education %}
-            <div class="entry">
-                <div class="entry-header">
-                    <div class="entry-header-left">
-                        <div class="organization">{{ edu.institution }}</div>
-                    </div>
-                    <div class="entry-header-right">
-                        <div class="location">{{ edu.location }}</div>
-                    </div>
-                </div>
-                <div class="entry-header">
-                    <div class="entry-header-left">
-                        <div class="position">{{ edu.degree }}</div>
-                    </div>
-                    <div class="entry-header-right">
-                        <div class="date">{{ edu.startDate }} - {{ edu.endDate }}</div>
-                    </div>
+        <div class="main-content">
+            <!-- Header Section -->
+            <div class="header">
+                <h1 class="name">{{ resume.basicDetails.name|upper }}</h1>
+                <!-- <div class="title">{{ resume.basicDetails.position }}</div> -->
+                <div class="contact-info">
+                    {% if resume.basicDetails.phone %}<span>{{ resume.basicDetails.phone }}</span> {% endif %}
+                    {% if resume.basicDetails.email %}<span>• {{ resume.basicDetails.email }}</span> {% endif %}
+                    {% if resume.basicDetails.linkedin %}<span>• {{ resume.basicDetails.linkedin }}</span> {% endif %}
+                    {% if resume.basicDetails.location %}<span>• {{ resume.basicDetails.location }}</span>{% endif %}
                 </div>
             </div>
-            {% endfor %}
-        </div>
-        {% endif %}
 
-
-        {% if resume.keyAchievements is defined and resume.keyAchievements %}
-        <!-- Key Achievements Section -->
-        <div class="section">
-            <h2 class="section-title">Key Achievements</h2>
-
-            {% for achievement in resume.keyAchievements %}
-            <div class="achievement">
-                <div class="achievement-title">{{ achievement.title }}</div>
-                <p class="description">{{ achievement.description }}</p>
+            <!-- Summary Section -->
+            <div class="section">
+                <h2 class="section-title">Summary</h2>
+                <p class="description summary">
+                    {{ resume.summary }}
+                </p>
             </div>
-            {% endfor %}
-        </div>
-        {% endif %}
 
-
-        {% if resume.certifications %}
-        <!-- Certification Section -->
-        <div class="section">
-            <h2 class="section-title">Certifications</h2>
-
-            {% for cert in resume.certifications %}
-            <div class="entry">
-                <div class="position">{{ cert.title }}</div>
-                <p class="description">{{ cert.description }}</p>
+            <!-- Skills Section -->
+            <div class="section">
+                <h2 class="section-title">Skills</h2>
+                {% for category in resume.skills %}
+                <div class="skills-items"><span class="skills-category">{{ category.category }}:</span> {{
+                    category.skill_items|join(", ") }}</div>
+                {% endfor %}
             </div>
-            {% endfor %}
+
+            <!-- Experience Section -->
+            <div class="section">
+                <h2 class="section-title">Experience</h2>
+
+                {% for job in resume.experience %}
+                <div class="entry">
+                    <div class="entry-header">
+                        <div class="entry-header-left">
+                            <div class="organization">{{ job.company }}</div>
+                        </div>
+                        <div class="entry-header-right">
+                            <div class="location">{{ job.location }}</div>
+                        </div>
+                    </div>
+                    <div class="entry-header">
+                        <div class="entry-header-left">
+                            <div class="position">{{ job.position }}</div>
+                        </div>
+                        <div class="entry-header-right">
+                            <div class="date">{{ job.startDate }} - {{ job.endDate }}</div>
+                        </div>
+                    </div>
+                    <ul class="bullets">
+                        {% for line in job.description.split('\n') %}
+                        {% if line.strip() %}
+                        <li>{{ line }}</li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if resume.projects is defined and resume.projects %}
+            <!-- Projects Section -->
+            <div class="section">
+                <h2 class="section-title">Projects</h2>
+
+                {% for project in resume.projects %}
+                <div class="entry">
+                    <div class="position">{{ project.title }}</div>
+                    <ul class="bullets">
+                        {% for line in project.description.split('\n') %}
+                        {% if line.strip() %}
+                        <li>{{ line }}</li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Education Section -->
+            {% if resume.education %}
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+
+                {% for edu in resume.education %}
+                <div class="entry">
+                    <div class="entry-header">
+                        <div class="entry-header-left">
+                            <div class="organization">{{ edu.institution }}</div>
+                        </div>
+                        <div class="entry-header-right">
+                            <div class="location">{{ edu.location }}</div>
+                        </div>
+                    </div>
+                    <div class="entry-header">
+                        <div class="entry-header-left">
+                            <div class="position">{{ edu.degree }}</div>
+                        </div>
+                        <div class="entry-header-right">
+                            <div class="date">{{ edu.startDate }} - {{ edu.endDate }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            {% if resume.keyAchievements is defined and resume.keyAchievements %}
+            <!-- Key Achievements Section -->
+            <div class="section">
+                <h2 class="section-title">Key Achievements</h2>
+
+                {% for achievement in resume.keyAchievements %}
+                <div class="achievement">
+                    <div class="achievement-title">{{ achievement.title }}</div>
+                    <p class="description">{{ achievement.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            {% if resume.certifications %}
+            <!-- Certification Section -->
+            <div class="section">
+                <h2 class="section-title">Certifications</h2>
+
+                {% for cert in resume.certifications %}
+                <div class="entry">
+                    <div class="position">{{ cert.title }}</div>
+                    <p class="description">{{ cert.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 </body>
 
