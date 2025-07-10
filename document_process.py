@@ -125,23 +125,162 @@ def count_value_characters(data):
 
 
 def get_page_size(characters):
-    if characters >= 5000 and characters <=6000:
-        # print("characters >= 5000 and characters <=6000")
+    if characters >= 5000 and characters <= 6000:
+        print("characters >= 5000 and characters <= 6000")
         return 380
-    elif characters >= 4700 and characters <=5000:
-        # print("characters >= 4700 and characters <=5000")
+    elif characters >= 4700 and characters < 5000:
+        print("characters >= 4700 and characters < 5000")
         return 350
-    elif characters >= 4500 and characters <=4700:
-        # print("characters >= 4500 and characters <=4700")
+    elif characters >= 4500 and characters < 4700:
+        print("characters >= 4500 and characters < 4700")
         return 300
-    elif characters >= 4200 and characters <=4500:
-        # print("characters >= 4200 and characters <=4500")
+    elif characters >= 4200 and characters < 4500:
+        print("characters >= 4200 and characters < 4500")
         return 280
-    elif characters >= 4000 and characters <=4200:
-        # print("characters >= 4000 and characters <=4200")
+    elif characters >= 4000 and characters < 4200:
+        print("characters >= 4000 and characters < 4200")
         return 260
-    return 250
+    elif characters >= 3500 and characters < 4000:
+        print("characters >= 3500 and characters < 4000")
+        return 240
+    elif characters >= 3000 and characters < 3500:
+        print("characters >= 3000 and characters < 3500")
+        return 220
+    elif characters >= 2500 and characters < 3000:
+        print("characters >= 2500 and characters < 3000")
+        return 200
+    elif characters >= 2000 and characters < 2500:
+        print("characters >= 2000 and characters < 2500")
+        return 180
+    elif characters >= 1500 and characters < 2000:
+        print("characters >= 1500 and characters < 2000")
+        return 160
+    elif characters >= 1000 and characters < 1500:
+        print("characters >= 1000 and characters < 1500")
+        return 140
+    elif characters >= 500 and characters < 1000:
+        print("characters >= 500 and characters < 1000")
+        return 120
+    elif characters > 0 and characters < 500:
+        print("characters > 0 and characters < 500")
+        return 100
+    return 80  # Fallback for 0 or invalid input
 
+def calculate_resume_page_height(resume_data):
+    """
+    Calculate dynamic page height for resume PDF to fit all content on one page.
+    
+    Args:
+        basic_details (dict): Basic information like name, email, phone, linkedin
+        resume_data (dict): Complete resume data including work experience, skills, etc.
+    
+    Returns:
+        int: Calculated page height in millimeters
+    """
+    
+    # Base measurements 
+    BASE_HEIGHT = 50  # Minimum height for basic sections
+    LINE_HEIGHT_MM = 3.5  # Approximate line height in mm
+    SECTION_SPACING = 1  # Space between sections
+    MARGIN_HEIGHT = 0  # Top and bottom margins
+    
+    total_height = BASE_HEIGHT
+    
+    # Header section (name, contact info)
+    header_lines = 3  # Name, contact info, spacing
+    total_height += header_lines * LINE_HEIGHT_MM
+    
+    # Summary section
+    if resume_data.get('Professional_Summary'):
+        summary_chars = len(resume_data['Professional_Summary'])
+        # Estimate lines based on character count
+        summary_lines = max(1, summary_chars // 140 + 1)
+        total_height += summary_lines * LINE_HEIGHT_MM + SECTION_SPACING
+    
+    # Skills section
+    if resume_data.get('skills'):
+        skills_lines = len(resume_data['skills'])  # One line per skill category
+        total_height += skills_lines * LINE_HEIGHT_MM + SECTION_SPACING
+    
+    # Work Experience section (usually the largest)
+    if resume_data.get('work_experiences'):
+        for job in resume_data['work_experiences']:
+            # Job header (company, location, position, dates) = 2 lines
+            total_height += 2 * LINE_HEIGHT_MM
+            
+            # Job description bullets
+            description_count = len(job.get('description', []))
+            # Each bullet point, accounting for text wrapping
+            for desc in job.get('description', []):
+                desc_chars = len(desc)
+                # Estimate lines per bullet
+                bullet_lines = max(1, desc_chars // 120 + 1)
+                total_height += bullet_lines * LINE_HEIGHT_MM
+            
+            # Spacing between jobs
+            total_height += SECTION_SPACING
+    
+    # Projects section
+    if resume_data.get('projects') and len(resume_data['projects']) > 0:
+        for project in resume_data['projects']:
+            # Project name = 1 line
+            total_height += LINE_HEIGHT_MM
+            
+            # Technologies line (if any)
+            if project.get('technologies') and len(project['technologies']) > 0:
+                total_height += LINE_HEIGHT_MM
+            
+            # Project description bullets
+            if project.get('description'):
+                for desc_item in project['description']:
+                    desc_chars = len(desc_item)
+                    # Estimate lines per bullet (assuming ~75 chars per line for bullet text)
+                    bullet_lines = max(1, desc_chars // 120 + 1)
+                    total_height += bullet_lines * LINE_HEIGHT_MM
+            
+            total_height += SECTION_SPACING
+    
+    # Education section
+    if resume_data.get('education'):
+        for edu in resume_data['education']:
+            # Each education entry = 2 lines (institution/location, degree/dates)
+            total_height += 2 * LINE_HEIGHT_MM
+        total_height += SECTION_SPACING
+    
+    # Certifications section
+    if resume_data.get('certifications'):
+        for cert in resume_data['certifications']:
+            # Title + description
+            cert_lines = 1  # Title line
+            if cert.get('description'):
+                desc_chars = len(cert['description'])
+                cert_lines += max(1, desc_chars // 120 + 1)
+            total_height += cert_lines * LINE_HEIGHT_MM
+        total_height += SECTION_SPACING
+    
+    # Key Achievements section
+    if resume_data.get('keyAchievements'):
+        for achievement in resume_data['keyAchievements']:
+            # Title + description
+            achievement_lines = 1  # Title line
+            if achievement.get('description'):
+                desc_chars = len(achievement['description'])
+                achievement_lines += max(1, desc_chars // 120 + 1)
+            total_height += achievement_lines * LINE_HEIGHT_MM
+        total_height += SECTION_SPACING
+    
+    # Add margins
+    total_height += MARGIN_HEIGHT
+    
+    # Ensure minimum height and add buffer
+    # min_height = 200  # Minimum A4-like height
+    buffer = 5  # Extra buffer for safety
+    
+    # calculated_height = max(min_height, total_height + buffer)
+    calculated_height = total_height + buffer
+    print(calculated_height)
+    # Round up to nearest 10mm for cleaner page size
+    return int((calculated_height + 9) // 10 * 10)
 
 async def generate_resume_from_json(basic_details, resume_data): 
     templates = Jinja2Templates(directory="templates")
@@ -172,10 +311,11 @@ async def generate_resume_from_json(basic_details, resume_data):
     complete_resume["basicDetails"] = basic_details
 
     # Get the Total characters count of resume data and pass it to get_page_size function
-    complete_resume["pageSize"] = get_page_size(count_value_characters(resume_data))
-    
+    # complete_resume["pageSize"] = get_page_size(count_value_characters(resume_data))
+    complete_resume["pageSize"] = calculate_resume_page_height(resume_data)
+
     # Add watermark to the resume if it is True need to decide if user is paid or free 
-    complete_resume["watermark"] = True
+    complete_resume["watermark"] = False
 
     # Render template with the provided data
     html_content = templates.get_template("resume/resume_dynamic.html").render(
